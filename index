@@ -1,8 +1,436 @@
-eden-nest-website/
-│
-├── index.html
-├── style.css
-├── script.js
-├── images/
-│   ├── logo.png
-│   └── banner.jpg
+
+<h2 class="sr-only">EKC International FZE — 6-Month Sales & Marketing Lead Generation Plan for high-pressure cylinder exports</h2>
+
+<style>
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary);}
+.nav button{font-size:12px;padding:6px 14px;border-radius:var(--border-radius-md);cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);transition:all .15s;}
+.nav button.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500;}
+.section{display:none;}.section.active{display:block;}
+.hdr{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin:0 0 10px;}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem;}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem;}
+.metric .lbl{font-size:12px;color:var(--color-text-secondary);margin:0 0 4px;}
+.metric .val{font-size:22px;font-weight:500;color:var(--color-text-primary);margin:0;}
+.metric .sub{font-size:11px;color:var(--color-text-tertiary);margin:3px 0 0;}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 10px;border-radius:var(--border-radius-md);}
+.b-amber{background:#FAEEDA;color:#633806;}
+.b-teal{background:#E1F5EE;color:#085041;}
+.b-blue{background:#E6F1FB;color:#0C447C;}
+.b-coral{background:#FAECE7;color:#712B13;}
+.b-purple{background:#EEEDFE;color:#3C3489;}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:1.5rem;}
+.tmonth{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.6rem .5rem;cursor:pointer;transition:all .15s;}
+.tmonth:hover,.tmonth.sel{border-color:#BA7517;background:#FAEEDA;}
+.tmonth .mnum{font-size:10px;font-weight:500;color:var(--color-text-tertiary);}
+.tmonth .mlbl{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-top:2px;}
+.tmonth .mphase{font-size:10px;color:#854F0B;margin-top:2px;}
+.mdetail{display:none;}.mdetail.vis{display:block;}
+.task{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.task:last-child{border:none;}
+.task .icon{width:28px;height:28px;border-radius:6px;background:#FAEEDA;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.task .icon i{font-size:14px;color:#854F0B;}
+.task .ttitle{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px;}
+.task .tdesc{font-size:12px;color:var(--color-text-secondary);margin:0;}
+.ch-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.ch-row:last-child{border:none;}
+.ch-icon{width:32px;height:32px;border-radius:8px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;}
+.ch-icon i{font-size:17px;color:var(--color-text-secondary);}
+.ch-name{font-size:13px;font-weight:500;color:var(--color-text-primary);}
+.ch-desc{font-size:12px;color:var(--color-text-secondary);}
+.bar-wrap{width:90px;}
+.bar-bg{background:var(--color-background-secondary);border-radius:4px;height:6px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;background:#EF9F27;}
+.mkt-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.9rem 1.1rem;}
+.mkt-card .region{font-size:13px;font-weight:500;color:var(--color-text-primary);}
+.mkt-card .segment{font-size:11px;color:var(--color-text-secondary);margin:4px 0 8px;}
+.kpi-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem;text-align:center;}
+.kpi .knum{font-size:20px;font-weight:500;color:var(--color-text-primary);}
+.kpi .klbl{font-size:11px;color:var(--color-text-secondary);margin-top:2px;}
+.prog-wrap{margin-bottom:14px;}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;}
+.prog-bg{background:var(--color-background-secondary);border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;}
+.tip{background:#FAEEDA;border-radius:var(--border-radius-md);padding:.7rem 1rem;font-size:12px;color:#633806;margin-top:1rem;}
+.tip i{font-size:14px;vertical-align:-2px;margin-right:6px;}
+</style>
+
+<div style="padding:1rem 0 0;">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:1.5rem;">
+    <div>
+      <p style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-tertiary);margin:0 0 4px;">EKC International FZE · Dubai, UAE</p>
+      <p style="font-size:20px;font-weight:500;color:var(--color-text-primary);margin:0;">6-Month Sales & Lead Generation Plan</p>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:4px 0 0;">CNG · Industrial Cylinders · MEGC — Global Export Strategy</p>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <span class="badge b-amber">CNG Cylinders</span>
+      <span class="badge b-teal">Industrial</span>
+      <span class="badge b-blue">MEGC</span>
+    </div>
+  </div>
+
+  <div class="nav" id="mainNav">
+    <button class="active" onclick="switchTab('overview')"><i class="ti ti-layout-dashboard" aria-hidden="true" style="font-size:13px;margin-right:4px;"></i>Overview</button>
+    <button onclick="switchTab('roadmap')"><i class="ti ti-calendar" aria-hidden="true" style="font-size:13px;margin-right:4px;"></i>Month-by-Month</button>
+    <button onclick="switchTab('channels')"><i class="ti ti-broadcast" aria-hidden="true" style="font-size:13px;margin-right:4px;"></i>Lead Channels</button>
+    <button onclick="switchTab('markets')"><i class="ti ti-world" aria-hidden="true" style="font-size:13px;margin-right:4px;"></i>Target Markets</button>
+    <button onclick="switchTab('kpis')"><i class="ti ti-chart-bar" aria-hidden="true" style="font-size:13px;margin-right:4px;"></i>KPIs & Targets</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section active" id="tab-overview">
+    <div class="card-grid">
+      <div class="metric"><p class="lbl">Target New Leads</p><p class="val">300+</p><p class="sub">Over 6 months</p></div>
+      <div class="metric"><p class="lbl">Target Markets</p><p class="val">12+</p><p class="sub">Countries prioritized</p></div>
+      <div class="metric"><p class="lbl">Revenue Pipeline</p><p class="val">$2M+</p><p class="sub">Pipeline to build</p></div>
+      <div class="metric"><p class="lbl">Key Trade Shows</p><p class="val">4–6</p><p class="sub">Events to attend</p></div>
+    </div>
+
+    <p class="hdr">Strategic Phases</p>
+    <div class="card" style="padding:1.25rem 1.25rem .9rem;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+        <div style="padding-right:1.5rem;border-right:0.5px solid var(--color-border-tertiary);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#EF9F27;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Month 1–2</span>
+          </div>
+          <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px;">Foundation</p>
+          <p style="font-size:12px;color:var(--color-text-secondary);margin:0;">Database building, digital presence, market research, collateral creation</p>
+        </div>
+        <div style="padding:0 1.5rem;border-right:0.5px solid var(--color-border-tertiary);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Month 3–4</span>
+          </div>
+          <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px;">Active Outreach</p>
+          <p style="font-size:12px;color:var(--color-text-secondary);margin:0;">Multi-channel campaigns, trade shows, agent network, tender portals</p>
+        </div>
+        <div style="padding-left:1.5rem;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#378ADD;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Month 5–6</span>
+          </div>
+          <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px;">Nurture & Convert</p>
+          <p style="font-size:12px;color:var(--color-text-secondary);margin:0;">Pipeline follow-up, proposals, distributor deals, referral programs</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="hdr" style="margin-top:1.25rem;">Product–Market Priority Matrix</p>
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead><tr style="border-bottom:0.5px solid var(--color-border-secondary);">
+          <th style="text-align:left;padding:6px 0;font-weight:500;color:var(--color-text-secondary);font-size:12px;">Product</th>
+          <th style="text-align:left;padding:6px 8px;font-weight:500;color:var(--color-text-secondary);font-size:12px;">Primary Markets</th>
+          <th style="text-align:left;padding:6px 8px;font-weight:500;color:var(--color-text-secondary);font-size:12px;">Target Buyers</th>
+          <th style="text-align:left;padding:6px 0;font-weight:500;color:var(--color-text-secondary);font-size:12px;">Priority</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+            <td style="padding:10px 0;font-weight:500;"><span class="badge b-amber">CNG Cylinders</span></td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">India, Bangladesh, Pakistan, Argentina, Brazil, Colombia</td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">Fleet operators, CNG station developers, transport ministries</td>
+            <td style="padding:10px 0;"><span style="color:#639922;font-weight:500;font-size:13px;">★★★ High</span></td>
+          </tr>
+          <tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+            <td style="padding:10px 0;font-weight:500;"><span class="badge b-teal">Industrial</span></td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">Nigeria, Kenya, South Africa, GCC, Southeast Asia</td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">Chemical plants, hospitals, welding distributors, oil & gas</td>
+            <td style="padding:10px 0;"><span style="color:#EF9F27;font-weight:500;font-size:13px;">★★☆ Medium</span></td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;font-weight:500;"><span class="badge b-blue">MEGC</span></td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">Europe, North America, Australia, GCC</td>
+            <td style="padding:10px 8px;color:var(--color-text-secondary);">Gas distributors (BOC/Linde), offshore/LNG operators, energy cos.</td>
+            <td style="padding:10px 0;"><span style="color:#639922;font-weight:500;font-size:13px;">★★★ High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><i class="ti ti-bulb" aria-hidden="true"></i><strong>Key Advantage:</strong> Dubai base = zero customs friction for GCC, strong logistics to Africa & South Asia. Leverage "Made in UAE" for credibility in markets that prefer non-Chinese supply chains.</div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section" id="tab-roadmap">
+    <p class="hdr">Select a month to see the action plan</p>
+    <div class="timeline" id="timeline">
+      <div class="tmonth sel" onclick="selectMonth(0,this)"><div class="mnum">Month 1</div><div class="mlbl">Jul 2025</div><div class="mphase">Foundation</div></div>
+      <div class="tmonth" onclick="selectMonth(1,this)"><div class="mnum">Month 2</div><div class="mlbl">Aug 2025</div><div class="mphase">Foundation</div></div>
+      <div class="tmonth" onclick="selectMonth(2,this)"><div class="mnum">Month 3</div><div class="mlbl">Sep 2025</div><div class="mphase">Outreach</div></div>
+      <div class="tmonth" onclick="selectMonth(3,this)"><div class="mnum">Month 4</div><div class="mlbl">Oct 2025</div><div class="mphase">Outreach</div></div>
+      <div class="tmonth" onclick="selectMonth(4,this)"><div class="mnum">Month 5</div><div class="mlbl">Nov 2025</div><div class="mphase">Convert</div></div>
+      <div class="tmonth" onclick="selectMonth(5,this)"><div class="mnum">Month 6</div><div class="mlbl">Dec 2025</div><div class="mphase">Convert</div></div>
+    </div>
+
+    <div id="monthDetails">
+      <div class="mdetail vis card" id="m0">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 1 — Build Your Foundation</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Set up all systems before outreach begins.</p>
+        <div class="task"><div class="icon"><i class="ti ti-database" aria-hidden="true"></i></div><div><p class="ttitle">CRM Setup & Contact Database</p><p class="tdesc">Set up HubSpot (free) or Zoho CRM. Import existing customers. Create buyer persona lists by product type.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div><div><p class="ttitle">LinkedIn Company Page Overhaul</p><p class="tdesc">Optimize EKC page with product showcase, banner, and 3 posts/week plan. Set up personal LinkedIn for outreach.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-file-description" aria-hidden="true"></i></div><div><p class="ttitle">Product Collateral Creation</p><p class="tdesc">Create professional PDF brochures for CNG, Industrial, and MEGC with technical specs, certifications, and case studies.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-list-search" aria-hidden="true"></i></div><div><p class="ttitle">Competitor & Market Research</p><p class="tdesc">Map top 10 competitors (Luxfer, Worthington, CP Industries). Find pricing gaps and positioning opportunities.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-certificate" aria-hidden="true"></i></div><div><p class="ttitle">Certifications Audit</p><p class="tdesc">List all certifications (ISO 11439, DOT, CE, etc.). Highlight certifications on all marketing material — buyers need this first.</p></div></div>
+      </div>
+
+      <div class="mdetail card" id="m1">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 2 — Digital Presence & Directory Listings</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Get discovered by buyers searching online.</p>
+        <div class="task"><div class="icon"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div><div><p class="ttitle">B2B Marketplace Listings</p><p class="tdesc">List on Alibaba (Gold Supplier), TradeIndia, ExportHub, Made-in-China, and IndiaMart with full product specs and certifications.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-book" aria-hidden="true"></i></div><div><p class="ttitle">Industry Directory Registrations</p><p class="tdesc">Register on Kompass, Thomasnet, Gas Equipment Directory, NGVA Europe member directory, and CGA (Compressed Gas Association) resources.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-mail-forward" aria-hidden="true"></i></div><div><p class="ttitle">Email Campaign Setup</p><p class="tdesc">Set up Mailchimp/Brevo. Create a 5-email cold outreach sequence. Write email templates for each product line. Aim for <300 word emails.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-globe" aria-hidden="true"></i></div><div><p class="ttitle">Website SEO Audit</p><p class="tdesc">Target keywords: "CNG cylinder manufacturer UAE", "industrial cylinder exporter", "MEGC supplier". Optimize product pages accordingly.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-building" aria-hidden="true"></i></div><div><p class="ttitle">Trade Show Calendar Planning</p><p class="tdesc">Identify and register for: ADIPEC Abu Dhabi, Gastech, CNG/LNG Americas, Africa Oil Week, Hannover Messe. Book exhibition space early.</p></div></div>
+      </div>
+
+      <div class="mdetail card" id="m2">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 3 — Launch Multi-Channel Outreach</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Start active lead generation across all channels simultaneously.</p>
+        <div class="task"><div class="icon"><i class="ti ti-user-search" aria-hidden="true"></i></div><div><p class="ttitle">LinkedIn Sales Navigator Campaign</p><p class="tdesc">Target: Procurement Managers, Fleet Managers, Gas Plant Directors. Send 30–50 personalized connection requests/day. Follow up with value message.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-mail" aria-hidden="true"></i></div><div><p class="ttitle">Cold Email Campaigns — 500 Contacts</p><p class="tdesc">Send targeted cold emails to CNG fleet operators in South Asia and South America. Personalize by country. Target 25%+ open rate.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-users" aria-hidden="true"></i></div><div><p class="ttitle">Agent & Distributor Identification</p><p class="tdesc">Find 2–3 agents per priority country (India, Nigeria, Brazil). Use UAE Export Authority and Chamber of Commerce connections.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-file-invoice" aria-hidden="true"></i></div><div><p class="ttitle">Tender & Procurement Portals</p><p class="tdesc">Register on UNGM (UN Global Marketplace), DG Market (EU), World Bank e-Procurement, national govt. portals in target markets.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-writing" aria-hidden="true"></i></div><div><p class="ttitle">Content Marketing — LinkedIn Articles</p><p class="tdesc">Publish 2 technical articles: "How to choose CNG cylinders" and "MEGC vs tube trailers". Position EKC as technical authority.</p></div></div>
+      </div>
+
+      <div class="mdetail card" id="m3">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 4 — Trade Shows & Partnership Deals</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Maximum face-to-face exposure and agent signing.</p>
+        <div class="task"><div class="icon"><i class="ti ti-building-arch" aria-hidden="true"></i></div><div><p class="ttitle">ADIPEC / Key Trade Show Attendance</p><p class="tdesc">Man the booth. Pre-book 20+ meetings using LinkedIn. Collect 100+ business cards. Follow up within 24 hours via email.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-handshake" aria-hidden="true"></i></div><div><p class="ttitle">Sign First Agent Agreements</p><p class="tdesc">Finalize distribution agreements with 2–3 agents in India, Nigeria, and Brazil. Set quarterly targets and commission structure.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div><div><p class="ttitle">Dubai Exports (UAE Export Authority)</p><p class="tdesc">Register with Dubai Exports for market missions, subsidized trade show participation, and buyer-seller matchmaking events.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-phone-call" aria-hidden="true"></i></div><div><p class="ttitle">Warm Follow-up Campaign</p><p class="tdesc">Call and email all Month 3 leads. Qualify into Hot/Warm/Cold. Send quotation to Hot leads within 48 hours.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div><div><p class="ttitle">WhatsApp Business Broadcast</p><p class="tdesc">Use WhatsApp Business for markets like India, Middle East, Africa. Share product updates, price lists, and quick RFQ links.</p></div></div>
+      </div>
+
+      <div class="mdetail card" id="m4">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 5 — Pipeline Nurturing & Proposals</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Move hot leads to quotation and order stage.</p>
+        <div class="task"><div class="icon"><i class="ti ti-file-analytics" aria-hidden="true"></i></div><div><p class="ttitle">Custom Proposal Templates</p><p class="tdesc">Create professional quotation templates per product. Include payment terms, Incoterms (FOB/CIF Dubai), delivery timelines, and warranty.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-plane" aria-hidden="true"></i></div><div><p class="ttitle">Factory Visit Invitations</p><p class="tdesc">Invite top 5–10 high-value prospects for a Dubai factory tour. This converts hesitant buyers — trust through transparency.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-star" aria-hidden="true"></i></div><div><p class="ttitle">Customer Testimonials & Case Studies</p><p class="tdesc">Collect 3–5 testimonials from existing customers. Write one-page case study for each product showing problems solved and results.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-refresh" aria-hidden="true"></i></div><div><p class="ttitle">Re-engagement Campaign</p><p class="tdesc">Email all Cold leads with a new angle: price update, new certification, or case study. Convert some to Warm.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div><div><p class="ttitle">Mid-Point Performance Review</p><p class="tdesc">Review which channels gave best ROI. Double down on top 2 channels. Drop or pause lowest performers. Adjust Month 6 plan.</p></div></div>
+      </div>
+
+      <div class="mdetail card" id="m5">
+        <p style="font-size:15px;font-weight:500;margin:0 0 4px;">Month 6 — Scale & Close</p>
+        <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 1rem;">Maximize conversions and set up for Year 2.</p>
+        <div class="task"><div class="icon"><i class="ti ti-trophy" aria-hidden="true"></i></div><div><p class="ttitle">Close Pilot Orders</p><p class="tdesc">Negotiate and close first orders from top 5 leads — even small pilot orders. A first order builds a long-term relationship.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-share" aria-hidden="true"></i></div><div><p class="ttitle">Referral Program Launch</p><p class="tdesc">Ask existing customers to refer peers for a commission or volume discount. Industry networks are tight — word-of-mouth is gold.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-report" aria-hidden="true"></i></div><div><p class="ttitle">Tenders Response Submissions</p><p class="tdesc">Submit bids for any open government/UN tenders identified in Month 3. Even losing bids builds your tender track record.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-map-2" aria-hidden="true"></i></div><div><p class="ttitle">Year 2 Planning</p><p class="tdesc">Map which 3 new markets to enter in Year 2. Plan trade shows, assign agent targets, and set annual revenue pipeline goal.</p></div></div>
+        <div class="task"><div class="icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div><div><p class="ttitle">LinkedIn Paid Ads — Retargeting</p><p class="tdesc">Run targeted LinkedIn ads to website visitors and profile viewers. Small budget ($500/mo) for retargeting decision-makers.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANNELS -->
+  <div class="section" id="tab-channels">
+    <p class="hdr">Lead generation channels — ranked by impact for cylinder exports</p>
+    <div class="card">
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">LinkedIn Sales Navigator</p>
+          <p class="ch-desc">Target Procurement, Fleet, and Plant Managers globally. 50 connections/day = 1,500/month. Best for MEGC & high-value industrial orders.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">MEGC</span><span class="badge b-teal">Industrial</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:92%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Very High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-building-arch" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">Trade Shows & Exhibitions</p>
+          <p class="ch-desc">ADIPEC, Gastech, CNG/LNG Americas, Africa Oil Week, Hannover Messe. Pre-book meetings. 100+ contacts per event at high buying intent.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">CNG</span><span class="badge b-teal">Industrial</span><span class="badge b-blue">MEGC</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:90%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Very High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">Agent & Distributor Network</p>
+          <p class="ch-desc">Local agents in India, Nigeria, Brazil, Pakistan accelerate market entry. They bring existing buyer relationships you can't build overnight.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">CNG</span><span class="badge b-teal">Industrial</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:88%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Very High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">B2B Marketplaces</p>
+          <p class="ch-desc">Alibaba (Gold Supplier), TradeIndia, ExportHub, Made-in-China. Inbound leads from buyers actively searching for cylinder suppliers. Low cost, high volume.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">CNG</span><span class="badge b-teal">Industrial</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:75%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-file-invoice" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">Government & UN Tender Portals</p>
+          <p class="ch-desc">UNGM (UN), DG Market (EU), World Bank e-procurement, national procurement portals. Large volume orders, slow cycle but very high value.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">CNG</span><span class="badge b-blue">MEGC</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:70%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">Cold Email Sequences</p>
+          <p class="ch-desc">5-touch email sequences to decision-makers in target companies. Use Apollo.io or Hunter.io for contact finding. 300–500 contacts/month per campaign.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-teal">Industrial</span><span class="badge b-blue">MEGC</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:65%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Medium-High</p>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-icon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">UAE Export Authority (Dubai Exports)</p>
+          <p class="ch-desc">Free government support: trade missions, market intelligence, buyer matchmaking, subsidized trade show participation. Use this — you're paying for it with your taxes.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-amber">CNG</span><span class="badge b-teal">Industrial</span><span class="badge b-blue">MEGC</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:60%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Medium-High</p>
+        </div>
+      </div>
+      <div class="ch-row" style="border:none;">
+        <div class="ch-icon"><i class="ti ti-writing" aria-hidden="true"></i></div>
+        <div>
+          <p class="ch-name">Content Marketing (LinkedIn + Technical Blogs)</p>
+          <p class="ch-desc">Publish technical articles, product guides, and safety insights. Builds authority and generates inbound leads over time. Pairs with LinkedIn outreach.</p>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span class="badge b-purple">All Products</span></div>
+        </div>
+        <div class="bar-wrap">
+          <p style="font-size:11px;color:var(--color-text-tertiary);margin:0 0 4px;text-align:right;">Impact</p>
+          <div class="bar-bg"><div class="bar-fill" style="width:50%;background:#EF9F27;"></div></div>
+          <p style="font-size:11px;color:var(--color-text-secondary);text-align:right;margin:3px 0 0;">Medium</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip"><i class="ti ti-lightbulb" aria-hidden="true"></i><strong>Tools to use:</strong> Apollo.io (contact data), Hunter.io (email finder), LinkedIn Sales Navigator ($99/mo), HubSpot Free CRM, Mailchimp/Brevo (email), Canva (brochures), WhatsApp Business.</div>
+  </div>
+
+  <!-- MARKETS -->
+  <div class="section" id="tab-markets">
+    <p class="hdr">Priority target markets by product line</p>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:-4px 0 1rem;">Focus on these 12 markets first — each has active demand and limited quality suppliers.</p>
+
+    <p style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin:0 0 8px;"><span class="badge b-amber" style="margin-right:8px;">CNG Cylinders</span> South Asia & Latin America</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:1.25rem;">
+      <div class="mkt-card"><div class="region">🇮🇳 India</div><div class="segment">Largest CNG vehicle market. Delhi, Mumbai, Gujarat — massive fleet conversions. Target: GAIL subsidiaries, state transport corps.</div><span class="badge b-amber">★★★ Top Priority</span></div>
+      <div class="mkt-card"><div class="region">🇧🇩 Bangladesh</div><div class="segment">CNGvehicles widespread in Dhaka. Auto-rickshaw conversions ongoing. Target: RTA, private CNG filling companies.</div><span class="badge b-amber">★★★ Top Priority</span></div>
+      <div class="mkt-card"><div class="region">🇵🇰 Pakistan</div><div class="segment">One of world's largest CNG user bases. Target: OGDCL vendors, fleet operators, CNG station developers.</div><span class="badge b-amber">★★★ Top Priority</span></div>
+      <div class="mkt-card"><div class="region">🇧🇷 Brazil</div><div class="segment">Huge CNG bus fleet. Target: Petrobras vendor lists, municipal bus companies, fuel station chains.</div><span class="badge b-teal">★★☆ Strong</span></div>
+    </div>
+
+    <p style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin:0 0 8px;"><span class="badge b-teal" style="margin-right:8px;">Industrial Cylinders</span> Africa & Middle East</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:1.25rem;">
+      <div class="mkt-card"><div class="region">🇳🇬 Nigeria</div><div class="segment">Growing industrial base. Gas, welding, medical. Target: Linde/BOC Nigeria, industrial distributors, NNPC vendors.</div><span class="badge b-amber">★★★ Top Priority</span></div>
+      <div class="mkt-card"><div class="region">🇿🇦 South Africa</div><div class="segment">Most developed African market. Mining, medical, chemical. Target: Air Products SA, Afrox distributors.</div><span class="badge b-teal">★★☆ Strong</span></div>
+      <div class="mkt-card"><div class="region">🇸🇦 Saudi Arabia</div><div class="segment">Massive industrial projects (NEOM, Vision 2030). Medical gas growing. Target: Aramco vendors, medical gas distributors.</div><span class="badge b-teal">★★☆ Strong</span></div>
+      <div class="mkt-card"><div class="region">🇰🇪 Kenya</div><div class="segment">East Africa hub. Welding, medical, industrial growing fast. Target: BOC Kenya, hospital procurement, manufacturing firms.</div><span class="badge b-purple">★☆☆ Emerging</span></div>
+    </div>
+
+    <p style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin:0 0 8px;"><span class="badge b-blue" style="margin-right:8px;">MEGC</span> Europe, Americas & Australia</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:1.25rem;">
+      <div class="mkt-card"><div class="region">🇩🇪 Germany</div><div class="segment">Largest industrial gas market in Europe. H2 mobility growing. Target: Linde AG, Air Liquide DE, Messer Group vendors.</div><span class="badge b-amber">★★★ Top Priority</span></div>
+      <div class="mkt-card"><div class="region">🇺🇸 USA</div><div class="segment">MEGC demand from gas distributors & oil/gas sector. Target: Chart Industries customers, Matheson, Air Products.</div><span class="badge b-teal">★★☆ Strong</span></div>
+      <div class="mkt-card"><div class="region">🇦🇺 Australia</div><div class="segment">LNG & industrial gas sector. Mining industry. Target: BOC Australia, Coregas, Origin Energy vendors.</div><span class="badge b-teal">★★☆ Strong</span></div>
+      <div class="mkt-card"><div class="region">🇳🇱 Netherlands</div><div class="segment">European logistics hub. H2 and biogas projects. Port of Rotterdam connections. Target: Gasunie, Air Liquide NL.</div><span class="badge b-purple">★☆☆ Emerging</span></div>
+    </div>
+    <div class="tip"><i class="ti ti-bulb" aria-hidden="true"></i><strong>Quick win:</strong> Start with India (CNG), Nigeria (Industrial), and Germany (MEGC) simultaneously. These three markets can generate your first meaningful pipeline within 90 days.</div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section" id="tab-kpis">
+    <p class="hdr">Monthly targets to track</p>
+    <div class="kpi-row">
+      <div class="kpi"><div class="knum">50+</div><div class="klbl">New leads/month</div></div>
+      <div class="kpi"><div class="knum">25%</div><div class="klbl">Email open rate</div></div>
+      <div class="kpi"><div class="knum">30%</div><div class="klbl">LinkedIn acceptance</div></div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="knum">10+</div><div class="klbl">RFQs received/month</div></div>
+      <div class="kpi"><div class="knum">3–5%</div><div class="klbl">Lead-to-quote rate</div></div>
+      <div class="kpi"><div class="knum">100+</div><div class="klbl">Trade show contacts</div></div>
+    </div>
+
+    <p class="hdr" style="margin-top:1.25rem;">6-Month cumulative pipeline targets</p>
+    <div class="card">
+      <div class="prog-wrap">
+        <div class="prog-label"><span>New qualified leads generated</span><span style="font-weight:500;">Target: 300</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:100%;background:#EF9F27;"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Active agents / distributors signed</span><span style="font-weight:500;">Target: 6–8</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:80%;background:#1D9E75;"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Proposals / quotes submitted</span><span style="font-weight:500;">Target: 40–60</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:65%;background:#378ADD;"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Pilot orders / first-time buyers closed</span><span style="font-weight:500;">Target: 8–12</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:40%;background:#D4537E;"></div></div>
+      </div>
+      <div class="prog-wrap" style="margin-bottom:0;">
+        <div class="prog-label"><span>Revenue pipeline value created</span><span style="font-weight:500;">Target: $2M+</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:55%;background:#7F77DD;"></div></div>
+      </div>
+    </div>
+
+    <p class="hdr" style="margin-top:1.25rem;">Weekly rhythm — stick to this</p>
+    <div class="card">
+      <div class="task"><div class="icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div><div><p class="ttitle">Monday & Tuesday — LinkedIn outreach</p><p class="tdesc">Send 40–50 connection requests. Follow up on pending conversations. Post 1 content piece.</p></div></div>
+      <div class="task"><div class="icon"><i class="ti ti-mail" aria-hidden="true"></i></div><div><p class="ttitle">Wednesday — Email follow-ups</p><p class="tdesc">Review email campaign stats. Follow up on opens. Send new batch to cold list.</p></div></div>
+      <div class="task"><div class="icon"><i class="ti ti-phone" aria-hidden="true"></i></div><div><p class="ttitle">Thursday — Phone & WhatsApp outreach</p><p class="tdesc">Call 10–15 warm leads. WhatsApp broadcast update to prospects in Asia/Africa/Middle East.</p></div></div>
+      <div class="task" style="border:none;"><div class="icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div><div><p class="ttitle">Friday — Review & plan</p><p class="tdesc">Update CRM. Review week's leads. Qualify pipeline. Plan next week's target list. Send weekly self-report.</p></div></div>
+    </div>
+    <div class="tip"><i class="ti ti-target" aria-hidden="true"></i><strong>Most important metric:</strong> Number of qualified conversations started per week. Everything else is vanity. If you are having 15+ real conversations per week, orders will follow.</div>
+  </div>
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('#mainNav button').forEach((b,i)=>{
+    b.classList.remove('active');
+    if(['overview','roadmap','channels','markets','kpis'][i]===id) b.classList.add('active');
+  });
+}
+function selectMonth(idx,el){
+  document.querySelectorAll('.tmonth').forEach(t=>t.classList.remove('sel'));
+  el.classList.add('sel');
+  document.querySelectorAll('.mdetail').forEach(d=>d.classList.remove('vis'));
+  document.getElementById('m'+idx).classList.add('vis');
+}
+</script>
