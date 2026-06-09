@@ -1,3 +1,13 @@
 ekcsales/
 ├── index.html
 └── logo.png
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EKC Sales</title>
+</head>
+<body>
+    <img src="logo.png" alt="EKC Sales Logo" width="200">
+    <h1>Welcome to EKC Sales</h1>
+</body>
+</html>
