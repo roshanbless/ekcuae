@@ -1,6 +1,6 @@
 eden-nest-website/
 │
-├── index.html
+├── ekc_6month_sales_plan.html
 ├── style.css
 ├── script.js
 ├── images/
